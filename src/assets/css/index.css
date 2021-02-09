@@ -1,0 +1,22 @@
+.auth-container{
+    width: 350px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.heading{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.space_small{
+    margin-top: 10px;
+}
+
+.space_medium{
+    margin-top: 30px;
+}
+
+.space_large{
+    margin-top: 50px;
+}
