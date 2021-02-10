@@ -12,8 +12,6 @@ const SignIn = ({history}:any) =>{
 
     const {group, setGroup} = useContext(GroupContext)
 
-    const groupUid = group?.uid
-
     const handleEmail = useCallback((e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>)=>{
         setEmail(e.target.value)
     },[setEmail])
