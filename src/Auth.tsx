@@ -1,28 +1,27 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useContext } from 'react'
+import { GroupContext } from './context/groupContext';
+import { listenAuth } from './firebase/firebase';
 import Router from './Router'
 
 const Auth = ({children}:any)=>{
-        // const dispatch = useDispatch()
-        // const selecotor = useSelector(state=> state)
-        // const isSignedIn = getIsSignedIn(selecotor)
-        
-        // useEffect(()=>{
-        //         if(!isSignedIn){
-        //                 // dispatch(listenAuthState())
-        //         }
+    const {group} = useContext(GroupContext)
 
-        // },[])
+    useEffect(()=>{
+        if(group){
+            if(group.name === ''){
+                listenAuth()
+            }
+        }
+    },[])
 
-        // if(!isSignedIn){
-        //         return <></>
-        // }else{
-        //         return children
-        // }
+    if(group){
+        if(group.uid  === '' ){
+                return <></>
+        }else{
+                return children
+        }
+    }
 
-        return(
-            children
-        )
 }
 
 export default Auth

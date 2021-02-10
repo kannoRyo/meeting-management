@@ -1,12 +1,18 @@
-import React, {useCallback, useState, useContext} from 'react'
+import React, {useCallback, useState, useContext,useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import { TextInput, GreenButton } from '../components/index'
-import {UserContext} from '../context/userContext'
+import {GroupContext} from '../context/groupContext'
+import {signIn} from '../firebase/firebase'
+import {Button} from '@material-ui/core'
 
-const SignIn = () =>{
+const SignIn = ({history}:any) =>{
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [name, setName] = useState<string>('')
 
-    const {user} = useContext(UserContext)
+    const {group, setGroup} = useContext(GroupContext)
+
+    const groupUid = group?.uid
 
     const handleEmail = useCallback((e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>)=>{
         setEmail(e.target.value)
@@ -15,6 +21,10 @@ const SignIn = () =>{
     const handlePassword = useCallback((e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>)=>{
         setPassword(e.target.value)
     },[setPassword])
+
+    const handleName = useCallback((e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>)=>{
+        setName(e.target.value)
+    },[setName])
 
     return(
         <div className="auth-container">
@@ -28,7 +38,7 @@ const SignIn = () =>{
                 value={email}
                 onChange={handleEmail}
             />
-            <div className="space_medium" />
+            <div className="space_small" />
             <TextInput
                 fullWidth={true}
                 label={"パスワード"}
@@ -40,8 +50,18 @@ const SignIn = () =>{
             <div className="space_medium" />
             <GreenButton
                 text={"ログイン"}
-                onClick={()=>{}}
+                onClick={async ()=>{
+                    const newGroup = await signIn(email, password, name)
+                    setGroup(newGroup)
+                    history.push("/")
+                }}
             />
+            <div className="space_large" />
+            <div>
+                <Button variant="outlined" color="primary" >
+                    <Link to="signUp" className="link-element" >新しいグループを作る</Link>
+                </Button>
+            </div>
         </div>
     )
 }

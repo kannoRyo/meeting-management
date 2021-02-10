@@ -1,4 +1,4 @@
-export type User = {
+export type Group = {
     name: string,
     uid: string
 }
