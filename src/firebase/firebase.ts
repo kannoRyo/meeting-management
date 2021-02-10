@@ -2,14 +2,6 @@ import {firebaseConfig} from './config'
 import firebase from 'firebase'
 import 'firebase/firebase'
 
-// process.env.API_KEY
-// process.env.AUTH_DOMAIN
-// process.env.PROJECT_ID
-// process.env.STORAGE_BUCKET
-// process.env.MESSAGING_SENDER_ID
-// process.env.APP_ID
-// process.env.MEASUREMENT_ID
-
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 
 export const db = firebaseApp.firestore()
