@@ -25,3 +25,23 @@
     text-decoration: none;
     color: #000;
 }
+
+.home-container{
+    width: 600px;
+    margin:0 auto;
+    text-align: center;
+}
+
+.btn_small{
+    height: 30px;
+    width: 50px;
+    text-align: center;
+}
+
+.marginR_small{
+    margin-right: 5px;
+}
+
+.cards-display{
+    display: ;
+}

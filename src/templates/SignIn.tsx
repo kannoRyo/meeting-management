@@ -4,6 +4,7 @@ import { TextInput, GreenButton } from '../components/index'
 import {GroupContext} from '../context/groupContext'
 import {signIn} from '../firebase/firebase'
 import {Button} from '@material-ui/core'
+import { Group } from '../types/group'
 
 const SignIn = ({history}:any) =>{
     const [email, setEmail] = useState<string>('')
@@ -49,7 +50,7 @@ const SignIn = ({history}:any) =>{
             <GreenButton
                 text={"ログイン"}
                 onClick={async ()=>{
-                    const newGroup = await signIn(email, password, name)
+                    const newGroup = await signIn(email, password) as Group
                     setGroup(newGroup)
                     history.push("/")
                 }}
